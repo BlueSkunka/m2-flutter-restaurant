@@ -6,7 +6,7 @@ import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
-import { Reservation } from './entities/reservation.entity';
+import { Reservation, ReservationStatus } from './entities/reservation.entity';
 
 @Injectable()
 export class ReservationService {
@@ -170,5 +170,10 @@ export class ReservationService {
 
     console.log('Résultat final:', availability);
     return availability;
+  }
+
+  async updateStatus(id: number, status: ReservationStatus) {
+    await this.reservationsRepository.update(id, { status });
+    return this.findOne(id);
   }
 }

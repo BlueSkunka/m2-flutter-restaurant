@@ -68,6 +68,7 @@ docker-compose up -d
 - `GET /reservations` - Liste des réservations (Admin)
 - `GET /reservations/:id` - Détails d'une réservation (Admin)
 - `PUT /reservations/:id` - Mise à jour d'une réservation (Admin)
+- `POST /reservations/:id/status` - Mise à jour du statut d'une réservation (Admin)
 - `DELETE /reservations/:id` - Suppression d'une réservation (Admin)
 
 ## Sécurité
