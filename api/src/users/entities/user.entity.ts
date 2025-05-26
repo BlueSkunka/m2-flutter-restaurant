@@ -1,6 +1,5 @@
 import { Exclude } from 'class-transformer';
 import Role from 'src/auth/roles';
-import { Project } from 'src/projects/entities/project.entity';
 import { Reservation } from 'src/reservation/entities/reservation.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -30,9 +29,6 @@ export class User {
 
   @Column()
   roles: Role = Role.Customer;
-
-  @OneToMany(() => Project, (project) => project.owner)
-  projects: Project[];
 
   @OneToMany(() => Reservation, (reservation) => reservation.user)
   reservations: Reservation[];
