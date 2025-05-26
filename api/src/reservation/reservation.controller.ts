@@ -48,7 +48,7 @@ export class ReservationController {
   }
 
   @Get()
-  @Roles('admin')
+  @Roles('admin', 'waiter')
   findAll() {
     return this.reservationsService.findAll();
   }

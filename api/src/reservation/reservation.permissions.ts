@@ -20,4 +20,11 @@ export const permissions: Permissions<Role, Subjects, Actions> = {
     can(Actions.update, UpdateReservationStatusDto);
     can(Actions.delete, Reservation);
   },
+
+  waiter({ can }) {
+    can(Actions.read, Reservation);
+    can(Actions.update, UpdateReservationDto);
+    can(Actions.update, UpdateReservationStatusDto);
+    can(Actions.delete, Reservation);
+  },
 };
