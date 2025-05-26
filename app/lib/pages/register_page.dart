@@ -1,7 +1,10 @@
 // lib/pages/register_page.dart
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import '../service/auth_service.dart';
-import 'login_page.dart';
+import 'package:flutter_restaurant_app/prodivers/ApiProvider.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -17,18 +20,33 @@ class _RegisterPageState extends State<RegisterPage> {
   String password = '';
   String role = 'customer';
 
-  Future<void> _submit() async {
+
+  Future<void> _submit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
-        final result = await AuthService.register(
-          firstname: firstname,
-          lastname: lastname,
-          phone: phone,
-          role: role,
-          email: email,
-          password: password,
+        String _baseUrl = Provider.of<ApiProvider>(context, listen: false).getBaseUrl();
+
+        final response = await http.post(
+          Uri.parse('$_baseUrl/register'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'email': email,
+            'firstname': firstname,
+            'lastname': lastname,
+            'phone': phone,
+            'plainPassword': password,
+            'roles': role,
+          }),
         );
+
+        final body = jsonDecode(response.body);
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          print(body);
+        } else {
+          throw Exception(body['message'] ?? 'Erreur inconnue');
+        }
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Inscription réussie')),
         );
@@ -83,7 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 onSaved: (val) => password = val!,
               ),
               SizedBox(height: 20),
-              ElevatedButton(onPressed: _submit, child: Text('S\'inscrire')),
+              ElevatedButton(onPressed: () => this._submit(context), child: Text('S\'inscrire')),
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: Text('Déjà un compte ? Se connecter'),
