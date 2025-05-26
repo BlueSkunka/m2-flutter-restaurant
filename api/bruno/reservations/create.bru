@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{host}}/time-slots
+  url: {{host}}/reservations
   body: json
   auth: bearer
 }
@@ -16,7 +16,10 @@ auth:bearer {
 
 body:json {
   {
-    "startTime": "13:30",
-    "endTime": "15:30"
+    "user": 1,
+    "table": 1,
+    "timeSlot": 1,
+    "reservationDate": "2025/05/26",
+    "covers": 3
   }
 }

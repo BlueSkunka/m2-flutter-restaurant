@@ -1,10 +1,10 @@
-// src/time-slots/time-slot.entity.ts
-
+import { Reservation } from 'src/reservation/entities/reservation.entity';
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
+  Entity,
   OneToMany,
+  PrimaryGeneratedColumn,
+  Relation,
 } from 'typeorm';
 
 @Entity({ name: 'time_slots' })
@@ -17,4 +17,7 @@ export class TimeSlot {
 
   @Column({ type: 'time', name: 'end_time' })
   endTime: string;
+
+  @OneToMany(() => Reservation, (reservation) => reservation.timeSlot)
+  reservations: Relation<Reservation>[];
 }
