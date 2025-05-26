@@ -89,7 +89,7 @@ export class ReservationService {
       },
       relations: {
         timeSlot: true,
-        table: false,
+        table: true,
       },
     });
   }
