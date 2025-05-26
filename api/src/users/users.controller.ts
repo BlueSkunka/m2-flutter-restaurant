@@ -1,28 +1,32 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
+  Controller,
   Delete,
-  UseGuards,
-  Request,
-  Put,
+  Get,
   NotFoundException,
+  Param,
+  Post,
+  Put,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { AuthGuard } from '@nestjs/passport';
+import { plainToInstance } from 'class-transformer';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { ReservationService } from 'src/reservation/reservation.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from 'src/auth/roles.guard';
-import { Roles } from 'src/auth/decorators/roles.decorator';
-import { plainToInstance } from 'class-transformer';
 import { User } from './entities/user.entity';
+import { UsersService } from './users.service';
 
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly reservationService: ReservationService,
+  ) { }
 
   @Post()
   @Roles('admin')
@@ -56,5 +60,14 @@ export class UsersController {
   @Roles('admin')
   delete(@Param('id') id: string) {
     return this.usersService.remove(id);
+  }
+
+  @Get('/reservations')
+  async getUserReservations(@Request() req) {
+    const user = await this.usersService.findOneByEmail(req.user.email);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return this.reservationService.findByUser(user);
   }
 }
