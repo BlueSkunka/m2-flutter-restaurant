@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       try {
         String _baseUrl = Provider.of<ApiProvider>(context, listen: false).getBaseUrl();
         final response = await http.post(
-          Uri.parse('$_baseUrl/login'),
+          Uri.parse('$_baseUrl/auth/login'),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({
             'email': email,

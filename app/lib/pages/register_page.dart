@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
         String _baseUrl = Provider.of<ApiProvider>(context, listen: false).getBaseUrl();
 
         final response = await http.post(
-          Uri.parse('$_baseUrl/register'),
+          Uri.parse('$_baseUrl/auth/register'),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({
             'email': email,
