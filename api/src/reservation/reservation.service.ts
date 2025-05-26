@@ -18,7 +18,22 @@ export class ReservationService {
   }
 
   findAll() {
-    return this.reservationsRepository.find();
+    return this.reservationsRepository.find({
+      relations: {
+        user: true,
+        table: true,
+        timeSlot: true,
+      },
+      select: {
+        user: {
+          id: true,
+          email: true,
+          firstname: true,
+          lastname: true,
+          phone: true,
+        },
+      },
+    });
   }
 
   findOne(id: number) {
@@ -30,6 +45,15 @@ export class ReservationService {
         user: true,
         table: true,
         timeSlot: true,
+      },
+      select: {
+        user: {
+          id: true,
+          email: true,
+          firstname: true,
+          lastname: true,
+          phone: true,
+        },
       },
     });
   }
