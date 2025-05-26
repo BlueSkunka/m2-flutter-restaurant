@@ -7,7 +7,7 @@ import '../models/reservation.dart';
 Future<List<Reservation>> fetchReservations() async {
   // TODO En fonction de l'utilisateur changé la route appelé
 
-  final url = Uri.parse('http://10.0.2.2:3000/reservations');
+  final url = Uri.parse('http://localhost:3000/reservations');
   final headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlkIjoiYzk2ZTNlNjctNTVjZC00YmRhLTgzNDItNThjZjA4MTA5MzExIiwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNzQ4MjY1Mjc1LCJleHAiOjE3NDgyNjg4NzV9.e4ubDT46erHIjYIjkk_3JScRJive9LztvPccI5dsfxc',
@@ -21,6 +21,24 @@ Future<List<Reservation>> fetchReservations() async {
     return data.map((json) => Reservation.fromJson(json)).toList();
   } else {
     throw Exception('Erreur de chargement des réservations');
+  }
+}
+
+Future<void> updateReservationStatus(String reservationId, String newStatus) async {
+  final url = Uri.parse('http://10.0.2.2:3000/reservations/$reservationId/status');
+  final headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlkIjoiYzk2ZTNlNjctNTVjZC00YmRhLTgzNDItNThjZjA4MTA5MzExIiwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNzQ4MjY1Mjc1LCJleHAiOjE3NDgyNjg4NzV9.e4ubDT46erHIjYIjkk_3JScRJive9LztvPccI5dsfxc',
+  };
+
+  final body = jsonEncode({
+    'status': newStatus,
+  });
+
+  final response = await http.patch(url, headers: headers, body: body);
+
+  if (response.statusCode != 200) {
+    throw Exception('Erreur lors de la mise à jour du statut de la réservation');
   }
 }
 
