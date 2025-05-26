@@ -3,6 +3,7 @@ import 'package:flutter_restaurant_app/pages/reservation_page.dart';
 import 'package:flutter_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:flutter_restaurant_app/pages/restaurant_menu_page.dart';
 import 'package:flutter_restaurant_app/pages/utilisateur_page.dart';
+import 'package:flutter_restaurant_app/pages/admin_reservations_page.dart';
 import 'package:flutter_restaurant_app/models/dish_category.dart';
 import 'package:flutter_restaurant_app/models/restaurant.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,7 +45,8 @@ class _MainScreenState extends State<MainScreen> {
     const RestaurantDetailPage(),
     const RestaurantMenuPage(title: ''),
     const ReservationPage(),
-    const UtilisateurPage()
+    const UtilisateurPage(),
+    const AdminReservationsPage(),
   ];
 
   // Récupère l'écran à partir d'un index
@@ -88,9 +90,13 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
               icon: Icon(Icons.event_note),
               label: 'Profile'
-          )
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.admin_panel_settings),
+              label: 'Admin'
+          ),
         ],
-      ), // Current index dépend de la page affiché
+      ),
     );
   }
 }
