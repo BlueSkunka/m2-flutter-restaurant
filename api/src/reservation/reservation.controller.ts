@@ -12,6 +12,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { plainToInstance } from 'class-transformer';
 import { AccessGuard, Actions, UseAbility } from 'nest-casl';
+import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { UsersService } from 'src/users/users.service';
 import { CreateReservationDto } from './dto/create-reservation.dto';
@@ -28,21 +29,31 @@ export class ReservationController {
   ) { }
 
   @Post()
+  @UseGuards(AccessGuard)
+  @UseAbility(Actions.create, CreateReservationDto)
   async create(@Body() createReservationDto: CreateReservationDto, @Request() req) {
+    const user = await this.usersService.findOneByEmail(req.user.email);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    createReservationDto.user = user;
     return this.reservationsService.create(createReservationDto);
   }
 
   @Get()
+  @Roles('admin')
   findAll() {
     return this.reservationsService.findAll();
   }
 
   @Get(':id')
+  @Roles('admin')
   findOne(@Param('id') id: number) {
     return this.reservationsService.findOne(id);
   }
 
   @Put(':id')
+  @Roles('admin')
   @UseGuards(AccessGuard)
   @UseAbility(Actions.update, UpdateReservationDto)
   update(@Param('id') id: number, @Body() updateReservationDto: UpdateReservationDto) {
@@ -53,6 +64,7 @@ export class ReservationController {
   }
 
   @Delete(':id')
+  @Roles('admin')
   @UseGuards(AccessGuard)
   @UseAbility(Actions.delete, Reservation, [
     ReservationService,

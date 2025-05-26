@@ -10,10 +10,12 @@ export type Subjects = InferSubjects<
 
 export const permissions: Permissions<Role, Subjects, Actions> = {
   everyone({ can }) {
-    can(Actions.read, 'all');
+    can(Actions.create, CreateReservationDto);
   },
 
   admin({ can }) {
-    can(Actions.delete, 'all');
+    can(Actions.read, Reservation);
+    can(Actions.update, UpdateReservationDto);
+    can(Actions.delete, Reservation);
   },
 };
