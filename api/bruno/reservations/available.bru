@@ -1,0 +1,21 @@
+meta {
+  name: available
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{host}}/reservations/available
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "date": "2025-05-26"
+  }
+}
