@@ -1,6 +1,5 @@
 import { Exclude } from 'class-transformer';
 import Role from 'src/auth/roles';
-import Category from 'src/projects/category';
 import { Project } from 'src/projects/entities/project.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
@@ -13,7 +12,13 @@ export class User {
   email: string;
 
   @Column()
-  name: string;
+  firstname: string;
+
+  @Column()
+  lastname: string;
+
+  @Column()
+  phone: string;
 
   @Column()
   @Exclude()
@@ -27,10 +32,4 @@ export class User {
 
   @OneToMany(() => Project, (project) => project.owner)
   projects: Project[];
-
-  @Column({
-    type: 'simple-array',
-    default: null,
-  })
-  interests: Category[] = [];
 }

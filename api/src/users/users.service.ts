@@ -5,7 +5,6 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
-import { InterestsUserDto } from './dto/interests-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -58,12 +57,6 @@ export class UsersService {
     return this.usersRepository.findOne({
       where: { email },
     });
-  }
-
-  updateInterests(user: User, interests: InterestsUserDto) {
-    user.interests = interests.interests;
-
-    this.usersRepository.save(user);
   }
 
   delete(id: string) {
