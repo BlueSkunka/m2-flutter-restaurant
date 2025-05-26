@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { TableEntity } from 'src/tables/entities/table.entity';
 import { TimeSlot } from 'src/time-slots/entities/time-slot.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Reservation, ReservationStatus } from './entities/reservation.entity';
@@ -107,6 +107,7 @@ export class ReservationService {
     const reservations = await this.reservationsRepository.find({
       where: {
         reservationDate: new Date(date),
+        status: In([ReservationStatus.PENDING, ReservationStatus.CONFIRMED])
       },
       relations: {
         table: true,
