@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { CaslModule } from 'nest-casl';
 import { TablesModule } from './tables/tables.module';
+import { TimeSlotsModule } from './time-slots/time-slots.module';
 import Roles from './auth/roles';
 
 @Module({
@@ -22,6 +23,7 @@ import Roles from './auth/roles';
       getUserFromRequest: (request) => request.user,
     }),
     TablesModule,
+    TimeSlotsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
