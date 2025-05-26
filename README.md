@@ -30,7 +30,7 @@ Et voilà, votre application est prête à l'emploi.
 
 Vous trouverez ci-dessous la liste des fonctionnalités existantes sur l'API :
 
-- Connexion / Inscription d'un utilisateur
+- Connexion / Inscription d'un utilisateur (jusqu'à que quentin essaie de mettre en place le provider)
 - Gestion des utilisateurs en tant qu'administrateur
 - Gestion des tables et des créneaux en tant qu'administrateur
 - Gestion des réservations en tant que hôte/serveur
