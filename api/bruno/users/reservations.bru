@@ -1,0 +1,15 @@
+meta {
+  name: reservations
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{host}}/users/reservations
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
