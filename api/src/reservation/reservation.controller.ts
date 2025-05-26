@@ -15,6 +15,7 @@ import { AccessGuard, Actions, UseAbility } from 'nest-casl';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { UsersService } from 'src/users/users.service';
+import { CheckAvailabilityDto } from './dto/check-availability.dto';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Reservation } from './entities/reservation.entity';
@@ -27,6 +28,11 @@ export class ReservationController {
     private readonly reservationsService: ReservationService,
     private readonly usersService: UsersService,
   ) { }
+
+  @Post('available')
+  async checkAvailability(@Body() checkAvailabilityDto: CheckAvailabilityDto) {
+    return this.reservationsService.checkAvailability(checkAvailabilityDto.date);
+  }
 
   @Post()
   @UseGuards(AccessGuard)
