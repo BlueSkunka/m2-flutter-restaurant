@@ -112,12 +112,12 @@ class _AdminReservationsPageState extends State<AdminReservationsPage> {
                   if (reservation.status.toLowerCase() == 'pending')
                     IconButton(
                       icon: const Icon(Icons.check, color: Colors.green),
-                      onPressed: () => _updateReservationStatus(reservation, 'CONFIRMED'),
+                      onPressed: () => _updateReservationStatus(reservation, 'confirmed'),
                     ),
-                  if (reservation.status.toLowerCase() == 'pending')
+                  if (reservation.status.toLowerCase() == 'pending' || reservation.status.toLowerCase() == 'confirmed')
                     IconButton(
                       icon: const Icon(Icons.close, color: Colors.red),
-                      onPressed: () => _updateReservationStatus(reservation, 'REFUSED'),
+                      onPressed: () => _updateReservationStatus(reservation, 'refused'),
                     ),
                 ],
               ),
