@@ -17,7 +17,7 @@ class AuthService {
   }) async {
     String _baseUrl = context.read<ApiProvider>().getBaseUrl();
     final response = await http.post(
-      Uri.parse('$_baseUrl/login'),
+      Uri.parse('$_baseUrl/auth/login'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'email': email,
@@ -38,7 +38,7 @@ class AuthService {
   }) async {
     String _baseUrl = context.read()<ApiProvider>().getBaseUrl();
     final response = await http.post(
-      Uri.parse('$_baseUrl/register'),
+      Uri.parse('$_baseUrl/auth/register'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'email': email,
