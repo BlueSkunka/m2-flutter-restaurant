@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import Category from '../category';
+
 import { User } from 'src/users/entities/user.entity';
 
 @Entity()
@@ -21,9 +21,6 @@ export class Project {
 
   @Column()
   budget: number;
-
-  @Column()
-  category: Category;
 
   @ManyToOne(() => User, (user) => user.projects, { onDelete: 'CASCADE' })
   owner: User;
