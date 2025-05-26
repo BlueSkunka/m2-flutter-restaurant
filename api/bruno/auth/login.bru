@@ -12,12 +12,12 @@ post {
 
 body:json {
   {
-    "email": "customer@customer.com",
-    "password": "test"
+    "email": "waiter@waiter.com",
+    "password": "password"
   }
 }
 
-script:pre-request {
+script:post-response {
   const data = res.getBody();
   bru.setEnvVar("token",data.accessToken)
 }
