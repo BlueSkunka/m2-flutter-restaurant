@@ -3,19 +3,20 @@ import 'package:flutter_restaurant_app/pages/reservation_page.dart';
 import 'package:flutter_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:flutter_restaurant_app/pages/restaurant_menu_page.dart';
 import 'package:flutter_restaurant_app/pages/utilisateur_page.dart';
+import 'package:flutter_restaurant_app/prodivers/ApiProvider.dart';
 import 'package:flutter_restaurant_app/prodivers/UserProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_restaurant_app/pages/admin_reservations_page.dart';
-import 'package:flutter_restaurant_app/models/dish_category.dart';
-import 'package:flutter_restaurant_app/models/restaurant.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => UserProvider(),
-      child: const RestaurantApp()
-    )
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => ApiProvider()),
+      ],
+      child: const RestaurantApp(),
+    ),
   );
 }
 

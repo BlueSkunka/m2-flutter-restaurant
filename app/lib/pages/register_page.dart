@@ -1,7 +1,10 @@
 // lib/pages/register_page.dart
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import '../service/auth_service.dart';
-import 'login_page.dart';
+import 'package:flutter_restaurant_app/prodivers/ApiProvider.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -21,16 +24,29 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<void> _submit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      AuthService authService = AuthService(context: context);
       try {
-        final result = await authService.register(
-          firstname: firstname,
-          lastname: lastname,
-          phone: phone,
-          role: role,
-          email: email,
-          password: password,
+        String _baseUrl = Provider.of<ApiProvider>(context, listen: false).getBaseUrl();
+
+        final response = await http.post(
+          Uri.parse('$_baseUrl/register'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'email': email,
+            'firstname': firstname,
+            'lastname': lastname,
+            'phone': phone,
+            'plainPassword': password,
+            'roles': role,
+          }),
         );
+
+        final body = jsonDecode(response.body);
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          print(body);
+        } else {
+          throw Exception(body['message'] ?? 'Erreur inconnue');
+        }
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Inscription réussie')),
         );

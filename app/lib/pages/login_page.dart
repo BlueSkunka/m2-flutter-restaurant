@@ -1,5 +1,11 @@
 // lib/pages/login_page.dart
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/prodivers/UserProvider.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import '../prodivers/ApiProvider.dart';
 import '../service/auth_service.dart';
 import 'register_page.dart';
 
@@ -20,8 +26,28 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
-        final result = await authService.login(email: email, password: password);
-        print(result);
+        String _baseUrl = Provider.of<ApiProvider>(context, listen: false).getBaseUrl();
+        final response = await http.post(
+          Uri.parse('$_baseUrl/login'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'email': email,
+            'password': password,
+          }),
+        );
+
+        final body = jsonDecode(response.body);
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          print(body);
+        } else {
+          throw Exception(body['message'] ?? 'Erreur inconnue');
+        }
+
+        // Ajout du token dans le provider
+        if (body.access_token) {
+          Provider.of<UserProvider>(context, listen: false).updateToken(body.access_token);
+        }
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Connexion réussie')),
         );

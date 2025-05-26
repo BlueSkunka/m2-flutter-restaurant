@@ -36,7 +36,7 @@ class AuthService {
     required String password,
     required String role,
   }) async {
-    String _baseUrl = context.read()<ApiProvider>(context).getBaseUrl();
+    String _baseUrl = context.read()<ApiProvider>().getBaseUrl();
     final response = await http.post(
       Uri.parse('$_baseUrl/register'),
       headers: {'Content-Type': 'application/json'},
