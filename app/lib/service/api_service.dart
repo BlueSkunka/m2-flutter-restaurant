@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import '../models/reservation.dart';
 
 Future<List<Reservation>> fetchReservations() async {
+  // TODO En fonction de l'utilisateur changé la route appelé
+
   final url = Uri.parse('http://10.0.2.2:3000/reservations');
   final headers = {
     'Content-Type': 'application/json',
