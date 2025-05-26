@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/pages/reservation_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/dish_category.dart';
 import '../../components/restaurant_card.dart';
@@ -17,17 +18,16 @@ final Restaurant restaurant = Restaurant(
 final List<DishCategory> menu = [DishCategory(name: "Boeuf bourguignon", price: 15.0)];
 
 class RestaurantDetailPage extends StatelessWidget {
+  final VoidCallback onReservationPressed;
 
   const RestaurantDetailPage({
-    super.key
+    super.key,
+    required this.onReservationPressed
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(restaurant.name),
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -69,50 +69,13 @@ class RestaurantDetailPage extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 24),
-            ...menu.map((category) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  category.name,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const SizedBox(height: 8),
-                ListTile(title: Text('${category.price.toStringAsFixed(2)} €',)),
-                const SizedBox(height: 24),
-              ],
-            )),
-            const SizedBox(height: 24),
             SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton.icon(
-                    onPressed: () {
-                      // Action du bouton : navigation ou popup
-                      showDialog(
-                        context: context,
-                        builder: (ctx) => AlertDialog(
-                          title: const Text("Réservation"),
-                          content: const Text("Souhaitez-vous réserver une table ?"),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.of(ctx).pop(),
-                              child: const Text("Annuler"),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(ctx).pop();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("Table réservée !")),
-                                );
-                              },
-                              child: const Text("Oui"),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                    onPressed: onReservationPressed,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue[100],
                       padding: const EdgeInsets.symmetric(vertical: 14),

@@ -7,11 +7,13 @@ import '../models/dish_category.dart';
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
   final List<DishCategory> menu;
+  final VoidCallback onReservationPressed;
 
   const RestaurantCard({
     super.key,
     required this.restaurant,
     required this.menu,
+    required this.onReservationPressed
   });
 
   @override
@@ -22,7 +24,7 @@ class RestaurantCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (_) => RestaurantDetailPage(
-
+              onReservationPressed: this.onReservationPressed,
             ),
           ),
         );
