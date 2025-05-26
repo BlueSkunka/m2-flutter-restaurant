@@ -5,6 +5,7 @@ import 'package:flutter_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ListRestaurants extends StatelessWidget{
+  late final VoidCallback onReservationPressed;
 
   final List<String> categories = [
     'Burger',
@@ -257,7 +258,7 @@ class ListRestaurants extends StatelessWidget{
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RestaurantDetailPage()
+                              builder: (context) => RestaurantDetailPage(onReservationPressed: this.onReservationPressed,)
                           ),
                         );
                       },

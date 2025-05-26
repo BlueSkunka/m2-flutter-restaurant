@@ -40,8 +40,8 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   // Liste des écrans dispo
-  final List<Widget> _screens = [
-    const RestaurantDetailPage(),
+  List<Widget> get _screens => [
+    RestaurantDetailPage(onReservationPressed: () => _onItemTapped(2)),
     const RestaurantMenuPage(title: ''),
     const ReservationPage(),
     const UtilisateurPage()
@@ -59,10 +59,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
       body: Center(
         child: _currentScreen,
       ),

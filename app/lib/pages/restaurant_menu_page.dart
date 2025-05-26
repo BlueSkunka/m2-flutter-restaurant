@@ -136,10 +136,6 @@ class _RestaurantMenuPageState extends State<RestaurantMenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
