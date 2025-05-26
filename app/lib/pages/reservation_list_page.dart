@@ -41,7 +41,7 @@ class _ReservationListPageState extends State<ReservationListPage> {
               return Card(
                 margin: EdgeInsets.all(8),
                 child: ListTile(
-                  title: Text('${res.date} à ${res.timeSlot.startTime}'),
+                  title: Text('${res.reservationDate} à ${res.timeSlot.startTime}'),
                   subtitle: Text('${res.restaurantTable.name} - ${res.covers} personnes'),
                   trailing: Text('${res.status}'),
                 ),
