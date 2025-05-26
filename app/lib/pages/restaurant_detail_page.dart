@@ -6,14 +6,20 @@ import '../../models/dish.dart';
 import '../models/dish_category.dart';
 import '../models/restaurant.dart';
 
+final Restaurant restaurant = Restaurant(
+  name: "Chez Mémé Simone",
+  address: "25 rue du Pont, Lyon",
+  rating: 4.6,
+  description: "Bienvenue Chez Mémé Simone, une adresse où le temps semble suspendu. Ici, chaque plat raconte une histoire : celle des recettes transmises de génération en génération, mijotées avec amour comme le faisait Mémé Simone dans sa cuisine lyonnaise. Entre nappes à carreaux rouges, vaisselle d'époque et odeur envoûtante de gratin doré, vous retrouverez le goût simple et sincère des bons repas d’autrefois. Que vous veniez pour le fameux bœuf bourguignon, la tarte aux pommes caramélisée ou simplement pour une pause conviviale autour d’un verre de vin, Chez Mémé Simone vous ouvre les bras comme à la maison. Installez-vous, détendez-vous, et laissez vos papilles voyager dans le temps.",
+  imageUrl: "https://media.s-bol.com/R71KZW2EDO1w/GLgxXK/550x366.jpg",
+  menu: [DishCategory(name: "Boeuf bourguignon", price: 15.0)],
+);
+final List<DishCategory> menu = [DishCategory(name: "Boeuf bourguignon", price: 15.0)];
+
 class RestaurantDetailPage extends StatelessWidget {
-  final Restaurant restaurant;
-  final List<DishCategory> menu;
 
   const RestaurantDetailPage({
-    super.key,
-    required this.restaurant,
-    required this.menu,
+    super.key
   });
 
   @override

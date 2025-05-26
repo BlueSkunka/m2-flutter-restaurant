@@ -5,32 +5,7 @@ import 'package:flutter_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ListRestaurants extends StatelessWidget{
-  const RestaurantApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Menu du Restaurant',
-      theme: ThemeData(
-        fontFamily: GoogleFonts.poppins().fontFamily,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MenuPage(title: "Votre table, quelle que soit l'occasion"),
-    );
-  }
-  class MenuPage extends StatefulWidget {
-  const MenuPage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MenuPage> createState() => _MenuPageState();
-  }
-
-  class _MenuPageState extends State<MenuPage> {
-  @override
-
-  }
   final List<String> categories = [
     'Burger',
     'Pizza',
@@ -132,7 +107,7 @@ class ListRestaurants extends StatelessWidget{
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        widget.title,
+                        "test",
                         style: const TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -282,7 +257,7 @@ class ListRestaurants extends StatelessWidget{
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RestaurantDetailPage(restaurant: restaurant, menu: restaurant.menu,)
+                              builder: (context) => RestaurantDetailPage()
                           ),
                         );
                       },
@@ -363,4 +338,6 @@ class ListRestaurants extends StatelessWidget{
         )
     );
   }
+
+  void setState(Null Function() param0) {}
 }
