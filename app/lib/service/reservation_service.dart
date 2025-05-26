@@ -27,10 +27,11 @@ Future<void> updateReservationStatus(String reservationId, String newStatus) asy
     'status': newStatus,
   });
 
-  final response = await http.patch(url, headers: Env.defaultHeaders, body: body);
+  final response = await http.post(url, headers: Env.defaultHeaders, body: body);
+  print('Response status code: ${response.statusCode}');
 
-  if (response.statusCode != 200) {
-    throw Exception('Erreur lors de la mise à jour du statut de la réservation');
+  if (response.statusCode != 201) {
+    throw Exception('Erreur lors de la mise à jour du statut de la réservation : ${response.body}');
   }
 }
 

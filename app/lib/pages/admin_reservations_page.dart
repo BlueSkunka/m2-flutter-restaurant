@@ -15,6 +15,21 @@ class _AdminReservationsPageState extends State<AdminReservationsPage> {
   bool _isLoading = true;
   String _error = '';
 
+  String _getStatusInFrench(String status) {
+    switch (status.toLowerCase()) {
+      case 'pending':
+        return 'En attente';
+      case 'confirmed':
+        return 'Acceptée';
+      case 'refused':
+        return 'Refusée';
+      case 'cancelled':
+        return 'Annulée';
+      default:
+        return status;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -43,8 +58,8 @@ class _AdminReservationsPageState extends State<AdminReservationsPage> {
 
   Future<void> _updateReservationStatus(Reservation reservation, String newStatus) async {
     try {
-      await updateReservationStatus(reservation.id, newStatus);
-      await _loadReservations(); // Recharger les réservations après la mise à jour
+      await updateReservationStatus(reservation.id.toString(), newStatus);
+      await _loadReservations();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Statut mis à jour avec succès')),
       );
@@ -86,23 +101,23 @@ class _AdminReservationsPageState extends State<AdminReservationsPage> {
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Date: ${reservation.date}'),
+                  Text('Date: ${reservation.reservationDate}'),
                   Text('Horaire: ${reservation.timeSlot.startTime} - ${reservation.timeSlot.endTime}'),
-                  Text('Statut: ${reservation.status}'),
+                  Text('Statut: ${_getStatusInFrench(reservation.status)}'),
                 ],
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (reservation.status == 'PENDING')
+                  if (reservation.status.toLowerCase() == 'pending')
                     IconButton(
                       icon: const Icon(Icons.check, color: Colors.green),
-                      onPressed: () => _updateReservationStatus(reservation, 'ACCEPTED'),
+                      onPressed: () => _updateReservationStatus(reservation, 'confirmed'),
                     ),
-                  if (reservation.status == 'PENDING')
+                  if (reservation.status.toLowerCase() == 'pending' || reservation.status.toLowerCase() == 'confirmed')
                     IconButton(
                       icon: const Icon(Icons.close, color: Colors.red),
-                      onPressed: () => _updateReservationStatus(reservation, 'REJECTED'),
+                      onPressed: () => _updateReservationStatus(reservation, 'refused'),
                     ),
                 ],
               ),

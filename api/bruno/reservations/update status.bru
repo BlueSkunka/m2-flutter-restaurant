@@ -1,0 +1,26 @@
+meta {
+  name: update status
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{host}}/reservations/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 2
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "test mathis",
+    "capacity": 10
+  }
+}

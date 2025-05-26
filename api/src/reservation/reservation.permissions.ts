@@ -1,11 +1,12 @@
 import { Actions, InferSubjects, Permissions } from 'nest-casl';
 import Role from 'src/auth/roles';
 import { CreateReservationDto } from './dto/create-reservation.dto';
+import { UpdateReservationStatusDto } from './dto/update-reservation-status.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Reservation } from './entities/reservation.entity';
 
 export type Subjects = InferSubjects<
-  typeof CreateReservationDto | typeof UpdateReservationDto | typeof Reservation
+  typeof CreateReservationDto | typeof UpdateReservationDto | typeof UpdateReservationStatusDto | typeof Reservation
 >;
 
 export const permissions: Permissions<Role, Subjects, Actions> = {
@@ -16,6 +17,7 @@ export const permissions: Permissions<Role, Subjects, Actions> = {
   admin({ can }) {
     can(Actions.read, Reservation);
     can(Actions.update, UpdateReservationDto);
+    can(Actions.update, UpdateReservationStatusDto);
     can(Actions.delete, Reservation);
   },
 };

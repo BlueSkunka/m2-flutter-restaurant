@@ -17,6 +17,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 import { UsersService } from 'src/users/users.service';
 import { CheckAvailabilityDto } from './dto/check-availability.dto';
 import { CreateReservationDto } from './dto/create-reservation.dto';
+import { UpdateReservationStatusDto } from './dto/update-reservation-status.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Reservation } from './entities/reservation.entity';
 import { ReservationService } from './reservation.service';
@@ -66,6 +67,20 @@ export class ReservationController {
     return plainToInstance(
       Reservation,
       this.reservationsService.update(id, updateReservationDto),
+    );
+  }
+
+  @Post(':id/status')
+  @Roles('admin')
+  @UseGuards(AccessGuard)
+  @UseAbility(Actions.update, UpdateReservationStatusDto)
+  updateStatus(
+    @Param('id') id: number,
+    @Body() updateReservationStatusDto: UpdateReservationStatusDto,
+  ) {
+    return plainToInstance(
+      Reservation,
+      this.reservationsService.updateStatus(id, updateReservationStatusDto.status),
     );
   }
 
