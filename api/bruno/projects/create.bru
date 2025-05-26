@@ -5,13 +5,13 @@ meta {
 }
 
 post {
-  url: http://localhost:3000/projects
+  url: {{host}}/projects
   body: json
   auth: bearer
 }
 
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVudHJlcHJlbmV1ckBlbnRyZXByZW5ldXIuY29tIiwiaWQiOiJhY2U5YTFiMi04ZThmLTQ1OTYtYjc3NC1iMTQzMzVhZWI2YTYiLCJyb2xlcyI6WyJlbnRyZXByZW5ldXIiXSwiaWF0IjoxNzQ3ODE1MDk2LCJleHAiOjE3NDc4MTg2OTZ9.ze4hXKJW1fx6kMAgB_x5fxx_ZWqbBP2_X1RrWiKSntE
+  token: {{token}}
 }
 
 body:json {
