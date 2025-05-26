@@ -19,10 +19,12 @@ class _AdminReservationsPageState extends State<AdminReservationsPage> {
     switch (status.toLowerCase()) {
       case 'pending':
         return 'En attente';
-      case 'accepted':
+      case 'confirmed':
         return 'Acceptée';
-      case 'rejected':
+      case 'refused':
         return 'Refusée';
+      case 'cancelled':
+        return 'Annulée';
       default:
         return status;
     }
@@ -110,12 +112,12 @@ class _AdminReservationsPageState extends State<AdminReservationsPage> {
                   if (reservation.status.toLowerCase() == 'pending')
                     IconButton(
                       icon: const Icon(Icons.check, color: Colors.green),
-                      onPressed: () => _updateReservationStatus(reservation, 'ACCEPTED'),
+                      onPressed: () => _updateReservationStatus(reservation, 'CONFIRMED'),
                     ),
                   if (reservation.status.toLowerCase() == 'pending')
                     IconButton(
                       icon: const Icon(Icons.close, color: Colors.red),
-                      onPressed: () => _updateReservationStatus(reservation, 'REJECTED'),
+                      onPressed: () => _updateReservationStatus(reservation, 'REFUSED'),
                     ),
                 ],
               ),
