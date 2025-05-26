@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/models/dish_category.dart';
+import 'package:flutter_restaurant_app/models/restaurant.dart';
+import 'package:flutter_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -45,31 +48,56 @@ class _MenuPageState extends State<MenuPage> {
   ];
   String selectedCategory = 'Entrées';
 
-  final List<Map<String, dynamic>> restaurants = [
-    {
+  final List<Restaurant> restaurants = [
+    Restaurant(
+      name: "Chez Mémé Simone",
+      address: "25 rue du Pont, Lyon",
+      rating: 4.6,
+      description: "Bienvenue Chez Mémé Simone, une adresse où le temps semble suspendu. Ici, chaque plat raconte une histoire : celle des recettes transmises de génération en génération, mijotées avec amour comme le faisait Mémé Simone dans sa cuisine lyonnaise. Entre nappes à carreaux rouges, vaisselle d'époque et odeur envoûtante de gratin doré, vous retrouverez le goût simple et sincère des bons repas d’autrefois. Que vous veniez pour le fameux bœuf bourguignon, la tarte aux pommes caramélisée ou simplement pour une pause conviviale autour d’un verre de vin, Chez Mémé Simone vous ouvre les bras comme à la maison. Installez-vous, détendez-vous, et laissez vos papilles voyager dans le temps.",
+      imageUrl: "https://media.s-bol.com/R71KZW2EDO1w/GLgxXK/550x366.jpg",
+      menu: [DishCategory(name: "Boeuf bourguignon", price: 15.0)],
+    ),
+    /*{
       "name": "Chez Mémé Simone",
       "address": "25 rue du Pont, Lyon",
       "rating": 4.6,
-      "imageUrl": "https://media.s-bol.com/R71KZW2EDO1w/GLgxXK/550x366.jpg"
+      "imageUrl": "",
+      "description": "",
+
     },
     {
       "name": "Pizza Bella",
       "address": "123 Rue de Rome, Lyon",
       "rating": 4.5,
-      "imageUrl": "https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "imageUrl": "https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Bienvenue Chez Mémé Simone, une adresse où le temps semble suspendu. Ici, chaque plat raconte une histoire : celle des recettes transmises de génération en génération, mijotées avec amour comme le faisait Mémé Simone dans sa cuisine lyonnaise. Entre nappes à carreaux rouges, vaisselle d'époque et odeur envoûtante de gratin doré, vous retrouverez le goût simple et sincère des bons repas d’autrefois. Que vous veniez pour le fameux bœuf bourguignon, la tarte aux pommes caramélisée ou simplement pour une pause conviviale autour d’un verre de vin, Chez Mémé Simone vous ouvre les bras comme à la maison. Installez-vous, détendez-vous, et laissez vos papilles voyager dans le temps.",
+      "menu": [
+        {"name": "Bœuf bourguignon", "price": 15.0},
+        {"name": "Bœuf bourguignon", "price": 15.0},
+      ]
     },
     {
       "name": "Café Douceur",
       "address": "45 Avenue du Parc, Lyon",
       "rating": 4.8,
-      "imageUrl": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "imageUrl": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Bienvenue Chez Mémé Simone, une adresse où le temps semble suspendu. Ici, chaque plat raconte une histoire : celle des recettes transmises de génération en génération, mijotées avec amour comme le faisait Mémé Simone dans sa cuisine lyonnaise. Entre nappes à carreaux rouges, vaisselle d'époque et odeur envoûtante de gratin doré, vous retrouverez le goût simple et sincère des bons repas d’autrefois. Que vous veniez pour le fameux bœuf bourguignon, la tarte aux pommes caramélisée ou simplement pour une pause conviviale autour d’un verre de vin, Chez Mémé Simone vous ouvre les bras comme à la maison. Installez-vous, détendez-vous, et laissez vos papilles voyager dans le temps.",
+      "menu": [
+        {"name": "Bœuf bourguignon", "price": 15.0},
+        {"name": "Bœuf bourguignon", "price": 15.0},
+      ]
     },
     {
       "name": "Boulangerie Artisanale",
       "address": "2 Rue des Fleurs, Lyon",
       "rating": 4.6,
-      "imageUrl": "https://images.unsplash.com/photo-1568254183919-78a4f43a2877?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
+      "imageUrl": "https://images.unsplash.com/photo-1568254183919-78a4f43a2877?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Bienvenue Chez Mémé Simone, une adresse où le temps semble suspendu. Ici, chaque plat raconte une histoire : celle des recettes transmises de génération en génération, mijotées avec amour comme le faisait Mémé Simone dans sa cuisine lyonnaise. Entre nappes à carreaux rouges, vaisselle d'époque et odeur envoûtante de gratin doré, vous retrouverez le goût simple et sincère des bons repas d’autrefois. Que vous veniez pour le fameux bœuf bourguignon, la tarte aux pommes caramélisée ou simplement pour une pause conviviale autour d’un verre de vin, Chez Mémé Simone vous ouvre les bras comme à la maison. Installez-vous, détendez-vous, et laissez vos papilles voyager dans le temps.",
+      "menu": [
+        {"name": "Bœuf bourguignon", "price": 15.0},
+        {"name": "Bœuf bourguignon", "price": 15.0},
+      ]
+    },*/
   ];
 
   // Catégorie de restaurants
@@ -98,7 +126,7 @@ class _MenuPageState extends State<MenuPage> {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 40),
               decoration: BoxDecoration(
-                color: Colors.blue[50],
+                color: Colors.blue[100],
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0), // marge gauche/droite
@@ -251,74 +279,85 @@ class _MenuPageState extends State<MenuPage> {
               itemBuilder: (context, index) {
                 final restaurant = restaurants[index];
 
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                        child: Image.network(
-                          restaurant['imageUrl'],
-                          height: 180,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
+                return InkWell(
+                  borderRadius: BorderRadius.circular(16),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RestaurantDetailPage(restaurant: restaurant, menu: restaurant.menu,)
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              restaurant['name'],
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: GoogleFonts.poppins().fontFamily,
+                    );
+                  },
+                  child: Card(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                          child: Image.network(
+                            restaurant.imageUrl,
+                            height: 180,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                restaurant.name,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: GoogleFonts.poppins().fontFamily,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                const Icon(Icons.location_on, size: 16, color: Colors.grey),
-                                const SizedBox(width: 4),
-                                Expanded(
-                                  child: Text(
-                                    restaurant['address'],
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  const Icon(Icons.location_on, size: 16, color: Colors.grey),
+                                  const SizedBox(width: 4),
+                                  Expanded(
+                                    child: Text(
+                                      restaurant.address,
+                                      style: TextStyle(
+                                        color: Colors.grey[700],
+                                        fontSize: 14,
+                                        fontFamily: GoogleFonts.poppins().fontFamily,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 6),
+                              Row(
+                                children: [
+                                  const Icon(Icons.star, size: 16, color: Colors.amber),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    restaurant.rating.toString(),
                                     style: TextStyle(
-                                      color: Colors.grey[700],
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                       fontFamily: GoogleFonts.poppins().fontFamily,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 6),
-                            Row(
-                              children: [
-                                const Icon(Icons.star, size: 16, color: Colors.amber),
-                                const SizedBox(width: 4),
-                                Text(
-                                  restaurant['rating'].toString(),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                    fontFamily: GoogleFonts.poppins().fontFamily,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  )
                 );
               },
             ),
