@@ -7,7 +7,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import Roles from './auth/roles';
-import { ProjectsModule } from './projects/projects.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { TablesModule } from './tables/tables.module';
 import { TimeSlotsModule } from './time-slots/time-slots.module';
@@ -19,7 +18,6 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     TypeOrmModule.forRoot(typeOrmConfig),
     AuthModule,
-    ProjectsModule,
     CaslModule.forRoot<Roles>({
       getUserFromRequest: (request) => request.user,
     }),
