@@ -3,6 +3,9 @@ import 'package:flutter_restaurant_app/pages/reservation_page.dart';
 import 'package:flutter_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:flutter_restaurant_app/pages/restaurant_menu_page.dart';
 import 'package:flutter_restaurant_app/pages/utilisateur_page.dart';
+import 'package:flutter_restaurant_app/models/dish_category.dart';
+import 'package:flutter_restaurant_app/models/restaurant.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const RestaurantApp());
@@ -91,3 +94,5 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
+
+

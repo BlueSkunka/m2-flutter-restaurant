@@ -1,0 +1,19 @@
+meta {
+  name: delete
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{host}}/time-slots/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 1
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndhaXRlckB3YWl0ZXIuY29tIiwiaWQiOiJmMGUyOGQ5NC0wZWQxLTQ0NTYtYTQ1NS1mMTBmMzQyOTZkYjkiLCJyb2xlcyI6WyJ3YWl0ZXIiXSwiaWF0IjoxNzQ4MjUzNzY4LCJleHAiOjE3NDgyNTczNjh9.WAB36IGMh-KVgPj0PbqJcEXXcei63YvkAklb3YTySfI
+}

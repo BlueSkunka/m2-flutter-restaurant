@@ -1,0 +1,22 @@
+meta {
+  name: create
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{host}}/tables
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndhaXRlckB3YWl0ZXIuY29tIiwiaWQiOiJmMGUyOGQ5NC0wZWQxLTQ0NTYtYTQ1NS1mMTBmMzQyOTZkYjkiLCJyb2xlcyI6WyJ3YWl0ZXIiXSwiaWF0IjoxNzQ4MjUzNzY4LCJleHAiOjE3NDgyNTczNjh9.WAB36IGMh-KVgPj0PbqJcEXXcei63YvkAklb3YTySfI
+}
+
+body:json {
+  {
+    "name": "test",
+    "capacity": 3
+  }
+}
