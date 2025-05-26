@@ -1,0 +1,23 @@
+meta {
+  name: create
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/investments
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImludmVzdG9yQGludmVzdG9yLmNvbSIsImlkIjoiNzk3ZmU3YjQtYjFhMC00OGZmLWExMmMtYzQ1YmUxZGVkZWZhIiwicm9sZXMiOlsiaW52ZXN0b3IiXSwiaWF0IjoxNzQ3ODE0NDExLCJleHAiOjE3NDc4MTgwMTF9.UxaW1x8BkgX_8aLrhWAsOLI8IOE9HI3SHwkccWwANPg
+}
+
+body:json {
+  {
+    "amount": 300,
+    "date": "2025-08-03",
+    "projectId": "0802f63b-2e63-4979-8cfa-77230b85d46c"
+  }
+}

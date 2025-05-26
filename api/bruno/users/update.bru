@@ -1,0 +1,24 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:3000/users/profile
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hdGhpcy5yb21lQGljbG91ZC5jb20iLCJ1dWlkIjoiYmM1YjBkMzQtMjJmYy00NTU5LWIxY2ItYzFjY2EwYThlZDQ1Iiwicm9sZSI6ImVudHJlcHJlbmV1ciIsImlhdCI6MTc0NTk5OTEzNywiZXhwIjoxNzQ2MDAyNzM3fQ.2__AT_HzFCuSwzNcrFlX1fW29L3sKeGR7yJSppVWmAg
+}
+
+body:json {
+  {
+    "id": "bc5b0d34-22fc-4559-b1cb-c1cca0a8ed45",
+    "email": "mathis.rome@icloud.com",
+    "name": "Mathis test",
+    "plainPassword": "testtest"
+  }
+}

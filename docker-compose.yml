@@ -1,12 +1,23 @@
 services:
-  hono:
+  node: 
     build:
-      context: ./infra/dev/hono
+      context: ./infra/dev/node
+      dockerfile: Dockerfile
+    volumes:
+      - ./api:/api
+    command: sh -c "npm install && npm run start:dev"
     ports:
       - 3000:3000
-    command: sh -c "npm install && npm run dev"
+
+  mariadb:
+    image: mariadb:11.1.2
     volumes:
-      - ./api:/var/www/api
+      - ./infra/volumes/dev/database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: toto44
+      MARIADB_DATABASE: flutter
+    ports:
+      - "3306:3306"
 
   mailcatcher:
     restart: on-failure

@@ -1,0 +1,15 @@
+meta {
+  name: list
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3000/users
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hdGhpcy5yb21lQGljbG91ZC5jb20iLCJ1dWlkIjoiZTIyZTdkZTUtZTEzZi00MzM5LWE0YTQtNjY1OGZlZTBjNGZlIiwicm9sZSI6ImVudHJlcHJlbmV1ciIsImlhdCI6MTc0NzU3MDE2OSwiZXhwIjoxNzQ3NTczNzY5fQ.gaqzQhc4JFSx0XnbnxxSDl20GqR96kO6gXeHteu-o9Q
+}
