@@ -1,6 +1,5 @@
 import { Exclude } from 'class-transformer';
 import Role from 'src/auth/roles';
-import { Investment } from 'src/investments/entities/investment.entity';
 import Category from 'src/projects/category';
 import { Project } from 'src/projects/entities/project.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
@@ -34,7 +33,4 @@ export class User {
     default: null,
   })
   interests: Category[] = [];
-
-  @OneToMany(() => Investment, (investment) => investment.investor)
-  investments: Investment[];
 }
