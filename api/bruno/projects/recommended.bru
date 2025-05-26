@@ -5,11 +5,11 @@ meta {
 }
 
 get {
-  url: http://localhost:3000/projects/recommended
+  url: {{host}}/projects/recommended
   body: none
   auth: bearer
 }
 
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hdGhpcy5yb21lQGljbG91ZC5jb20iLCJpZCI6IjE5ZTU2ODk5LWJmYTYtNDdkYy1hNzg5LWM1NjkxNjUyNTUxMSIsInJvbGVzIjpbImludmVzdG9yIl0sImlhdCI6MTc0Nzc0NDM0MywiZXhwIjoxNzQ3NzQ3OTQzfQ.xW4kgZgQx8QccgkC4Tqph-QdIVUQ05orxk_3YLGsaUo
+  token: {{token}}
 }

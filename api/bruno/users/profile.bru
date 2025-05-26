@@ -5,11 +5,11 @@ meta {
 }
 
 get {
-  url: http://localhost:3000/users/profile
+  url: {{host}}/users/profile
   body: none
   auth: bearer
 }
 
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN1c3RvbWVyQGN1c3RvbWVyLmNvbSIsImlkIjoiZTVjNTkxNTAtNWY5ZS00YjJiLWJmOTMtMTc0ZTkzMzhjYTdlIiwicm9sZXMiOlsiY3VzdG9tZXIiXSwiaWF0IjoxNzQ4MjUwODI2LCJleHAiOjE3NDgyNTQ0MjZ9.WA9FccmGBCGUmzFV7yCyHN74h9yqFQIlwpediibsQts
+  token: {{token}}
 }

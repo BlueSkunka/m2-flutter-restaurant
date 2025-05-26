@@ -5,7 +5,7 @@ meta {
 }
 
 delete {
-  url: http://localhost:3000/users/:id
+  url: {{host}}/users/:id
   body: none
   auth: bearer
 }
@@ -15,5 +15,5 @@ params:path {
 }
 
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hdGhpcy5yb21lQGljbG91ZC5jb20iLCJ1dWlkIjoiZjdkM2JlMWMtMGFmYi00MWFjLWJmOTktNWVhMWNkNGM2YjYxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2MDAwNjYxLCJleHAiOjE3NDYwMDQyNjF9.omIqkTWtPXChEmongN-CyZYv7A7BeCesVKAVCcFwTzA
+  token: {{token}}
 }
