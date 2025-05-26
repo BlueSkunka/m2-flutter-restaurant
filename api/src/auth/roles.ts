@@ -1,6 +1,6 @@
 enum Roles {
-  Entrepreneur = 'entrepreneur',
-  Investor = 'investor',
+  Waiter = 'waiter',
+  Customer = 'customer',
   Admin = 'admin',
 }
 

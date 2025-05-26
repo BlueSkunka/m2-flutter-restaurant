@@ -15,13 +15,6 @@ export const permissions: Permissions<Role, Subjects, Actions> = {
     can(Actions.read, 'all');
   },
 
-  entrepreneur({ can, user }) {
-    console.log(user);
-
-    can(Actions.update, UpdateProjectDto, { user: user.id });
-    can(Actions.delete, Project, { 'owner.id': user.id });
-  },
-
   admin({ can }) {
     can(Actions.delete, 'all');
   },

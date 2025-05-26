@@ -17,5 +17,5 @@ export class UpdateUserDto {
   password: string | undefined;
 
   @IsNotEmpty()
-  role: Roles = Roles.Entrepreneur;
+  role: Roles = Roles.Customer;
 }

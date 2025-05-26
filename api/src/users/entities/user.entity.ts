@@ -23,7 +23,7 @@ export class User {
   plainPassword: string | undefined;
 
   @Column()
-  roles: Role = Role.Entrepreneur;
+  roles: Role = Role.Customer;
 
   @OneToMany(() => Project, (project) => project.owner)
   projects: Project[];
