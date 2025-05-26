@@ -87,6 +87,10 @@ export class ReservationService {
           id: user.id,
         },
       },
+      relations: {
+        timeSlot: true,
+        table: false,
+      },
     });
   }
 
