@@ -42,7 +42,7 @@ export class Reservation {
   timeSlot: Relation<TimeSlot>;
 
   @Column({ type: 'date', name: 'reservation_date' })
-  reservationDate: string;
+  reservationDate: Date;
 
   @Column({ type: 'tinyint', unsigned: true })
   covers: number;
