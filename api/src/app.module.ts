@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CaslModule } from 'nest-casl';
+import { typeOrmConfig } from 'ormconfig';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from 'ormconfig';
 import { AuthModule } from './auth/auth.module';
+import Roles from './auth/roles';
 import { ProjectsModule } from './projects/projects.module';
-import { CaslModule } from 'nest-casl';
+import { ReservationModule } from './reservation/reservation.module';
 import { TablesModule } from './tables/tables.module';
 import { TimeSlotsModule } from './time-slots/time-slots.module';
-import Roles from './auth/roles';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -24,8 +25,9 @@ import Roles from './auth/roles';
     }),
     TablesModule,
     TimeSlotsModule,
+    ReservationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

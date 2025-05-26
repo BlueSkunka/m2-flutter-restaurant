@@ -1,10 +1,10 @@
-// src/tables/table.entity.ts
-
+import { Reservation } from 'src/reservation/entities/reservation.entity';
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
+  Entity,
   OneToMany,
+  PrimaryGeneratedColumn,
+  Relation,
 } from 'typeorm';
 
 @Entity({ name: 'tables' })
@@ -17,4 +17,7 @@ export class TableEntity {
 
   @Column({ type: 'tinyint', unsigned: true })
   capacity: number;
+
+  @OneToMany(() => Reservation, (reservation) => reservation.table)
+  reservations: Relation<Reservation>[];
 }
