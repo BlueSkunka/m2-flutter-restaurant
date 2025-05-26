@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/menu.dart';
 
 void main() {
   runApp(const RestaurantApp());
@@ -6,7 +7,7 @@ void main() {
 
 class RestaurantApp extends StatelessWidget {
   const RestaurantApp({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -142,6 +143,13 @@ class _MenuPageState extends State<MenuPage> {
     'Suggestions du chef': [],
   };
 
+  // Gestion de l'index du menu choisis (écran)
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    // TODO
+    print(index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -254,6 +262,7 @@ class _MenuPageState extends State<MenuPage> {
           ),
         ],
       ),
+      bottomNavigationBar: MenuWidget(currentIndex: 0), // Current index dépend de la page affiché
     );
   }
 }
