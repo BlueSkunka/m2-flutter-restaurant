@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant_app/pages/login_page.dart';
 import 'package:flutter_restaurant_app/pages/reservation_list_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,7 +19,7 @@ class RestaurantApp extends StatelessWidget {
         fontFamily: GoogleFonts.poppins().fontFamily,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: ReservationListPage(),
+      home: LoginPage(),
     );
   }
 }

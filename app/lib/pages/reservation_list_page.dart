@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/reservation.dart';
-import '../service/api_service.dart';
+import '../service/reservation_service.dart';
 
 class ReservationListPage extends StatefulWidget {
   @override
