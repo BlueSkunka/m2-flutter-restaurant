@@ -17,11 +17,13 @@ class _RegisterPageState extends State<RegisterPage> {
   String password = '';
   String role = 'customer';
 
-  Future<void> _submit() async {
+
+  Future<void> _submit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      AuthService authService = AuthService(context: context);
       try {
-        final result = await AuthService.register(
+        final result = await authService.register(
           firstname: firstname,
           lastname: lastname,
           phone: phone,
@@ -83,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 onSaved: (val) => password = val!,
               ),
               SizedBox(height: 20),
-              ElevatedButton(onPressed: _submit, child: Text('S\'inscrire')),
+              ElevatedButton(onPressed: () => this._submit(context), child: Text('S\'inscrire')),
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: Text('Déjà un compte ? Se connecter'),

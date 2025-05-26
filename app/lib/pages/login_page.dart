@@ -13,12 +13,15 @@ class _LoginPageState extends State<LoginPage> {
   String email = '';
   String password = '';
 
-  Future<void> _submit() async {
+  Future<void> _submit(BuildContext context) async {
+    AuthService authService = AuthService(context: context);
+
     print("submit");
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
-        final result = await AuthService.login(email: email, password: password);
+        final result = await authService.login(email: email, password: password);
+        print(result);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Connexion réussie')),
         );
@@ -54,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                 onSaved: (val) => password = val!,
               ),
               SizedBox(height: 20),
-              ElevatedButton(onPressed: _submit, child: Text('Se connecter')),
+              ElevatedButton(onPressed: () => _submit(context), child: Text('Se connecter')),
               TextButton(
                 onPressed: () => Navigator.push(
                   context,
